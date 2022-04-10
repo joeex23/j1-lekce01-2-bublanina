@@ -2,6 +2,7 @@ package cz.czechitas.recept;
 
 import cz.czechitas.recept.naradi.*;
 import cz.czechitas.recept.suroviny.*;
+import cz.czechitas.recept.suroviny.intf.NadobaSKusovouSurovinou;
 
 public class SpousteciTrida {
 
@@ -40,7 +41,54 @@ public class SpousteciTrida {
         // Pouzivejte napovidani v editoru.
         // Vyskakuje samo nebo pomoci Ctrl+Mezernik
 
-        cervenaMiska.nalozSiJedenKus(vajicka);
+        for (int i = 0; i < 4; i++) {
+            cervenaMiska.nalozSiJedenKus(vajicka);
+
+        }
+
+
+        cervenaMiska.nalozSiCelyObsah(pytlikCukru);
+        mixer.zamichej(cervenaMiska);
+        cervenaMiska.nalozSiCelyObsah(maslo125g);
+        mixer.zamichej(cervenaMiska);
+
+
+        kuchynskaVaha.vynulujSeS(zlutaMiska);
+        int vahaMouky=0;
+        int prevazek = 0;
+        int vahaMoukyPres;
+        do {
+            //vahaMouky = kuchynskaVaha.zjistiHmotnost(zlutaMiska);
+            if (vahaMouky < 250) {
+               zlutaMiska.nalozSiTrochu(pytlikMouky);
+           }
+            else if (vahaMouky > 250)  {
+                vahaMoukyPres = kuchynskaVaha.zjistiHmotnost(zlutaMiska);
+                zlutaMiska.vylozSiTrochu();
+                prevazek = prevazek + (vahaMoukyPres-kuchynskaVaha.zjistiHmotnost(zlutaMiska));
+           }
+            else {
+                break;
+            }
+            vahaMouky = kuchynskaVaha.zjistiHmotnost(zlutaMiska);
+        } while  (vahaMouky != 250);
+
+        kuchynskaVaha.zjistiHmotnost(zlutaMiska);
+        cervenaMiska.nalozSiObsahJineMisky(zlutaMiska);
+        cervenaMiska.nalozSiCelyObsah(prasekDoPeciva);
+        mixer.zamichej(cervenaMiska);
+        plech.preberSiObsah(cervenaMiska);
+        for (int i = 0; i < 50; i++) {
+            plech.posypSeKusem(ovoce);
+        }
+        trouba.zapniSe(180);
+        trouba.nechejPect(5);
+        trouba.vlozSiDovnitr(plech);
+        trouba.nechejPect(25);
+        trouba.vypniSe();
+        trouba.vyndejObsahVen();
+        System.out.println("Při vážení bylo do voidu vyhozeno:"+prevazek+"g mouky");
+
     }
 
 }
