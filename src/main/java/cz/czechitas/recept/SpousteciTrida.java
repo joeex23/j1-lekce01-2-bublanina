@@ -52,7 +52,6 @@ public class SpousteciTrida {
         cervenaMiska.nalozSiCelyObsah(maslo125g);
         mixer.zamichej(cervenaMiska);
 
-
         kuchynskaVaha.vynulujSeS(zlutaMiska);
         int vahaMouky=0;
         int prevazek = 0;
@@ -62,13 +61,10 @@ public class SpousteciTrida {
             if (vahaMouky < 250) {
                zlutaMiska.nalozSiTrochu(pytlikMouky);
            }
-            else if (vahaMouky > 250)  {
+            else  {
                 vahaMoukyPres = kuchynskaVaha.zjistiHmotnost(zlutaMiska);
                 zlutaMiska.vylozSiTrochu();
                 prevazek = prevazek + (vahaMoukyPres-kuchynskaVaha.zjistiHmotnost(zlutaMiska));
-           }
-            else {
-                break;
             }
             vahaMouky = kuchynskaVaha.zjistiHmotnost(zlutaMiska);
         } while  (vahaMouky != 250);
